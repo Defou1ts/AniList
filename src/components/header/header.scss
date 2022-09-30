@@ -1,0 +1,49 @@
+@import '../../styles/variables.scss';
+
+.header {
+   margin: 0px 0px 55px 0px;
+   border-bottom: 3px solid $red-color;
+   padding: 30px 0px;
+   &__body {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__logo {
+      & a {
+         font-size: 40px;
+         & span:first-child {
+            color: $red-color;
+         }
+      }
+   }
+
+   &__menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+   }
+
+   &__menu-list {
+      display: flex;
+      gap: 50px;
+      justify-content: space-between;
+      align-items: center;
+   }
+
+   &__menu-link {
+      transition: 0.2s ease;
+      &:hover {
+         transition: 0.2s ease;
+         color: $red-color;
+      }
+   }
+
+   &__menu-profile {
+      cursor: pointer;
+      width: 60px;
+      height: 60px;
+   }
+}

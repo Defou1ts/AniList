@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.animesearch {
+   max-width: 100%;
+   display: flex;
+   align-items: center;
+   flex: 1 1 auto;
+   width: 100%;
+   border: 1px solid #AFAFAF;
+   border-radius: 10px;
+   &__icon {
+      cursor: pointer;
+      margin: 12.5px;
+      background: transparent;
+      transition: 0.1s ease;
+      &:hover {
+         filter: invert(27%) sepia(88%) saturate(6116%) hue-rotate(353deg) brightness(105%) contrast(100%);
+         transition: 0.1s ease;
+      }
+   }
+   &__input {
+      max-width: 70%;
+      display: block;
+      font-size: 24px;
+      height: 20px;
+      background: transparent;
+      &::placeholder {
+         color: #959595;
+      }
+   }
+}

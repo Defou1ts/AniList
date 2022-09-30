@@ -27,3 +27,33 @@ body {
    color: $text-color;
    background-color: $bg-color;
 }
+
+
+.container {
+   margin: 0px 70px;
+}
+
+a {
+   transition: 0.2s ease;
+}
+
+a:hover {
+   color: $red-color;
+   transition: 0.2s ease;
+}
+
+.main {
+   display: flex;
+   flex-basis: 2;
+}
+
+
+@keyframes fade {
+   from {
+      opacity: 0;
+   }
+
+   to {
+      opacity: 1;
+   }
+}

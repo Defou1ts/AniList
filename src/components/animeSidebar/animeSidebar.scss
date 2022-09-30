@@ -1,0 +1,81 @@
+@import '../../styles/variables.scss';
+
+.sidebar {
+   max-width: 220px;
+   width: 100%;
+   &__menu {
+      margin: 0px 0px 55px 0px;
+      display: flex;
+      flex-direction: column;
+      row-gap: 30px;
+   }
+
+   &__menu-item {
+      max-width: 220px;
+      width: 100%;
+      position: relative;
+      padding: 10px 0px 10px 30px;
+      background: #DEDEDE;
+      border-radius: 10px;
+      line-height: 29px;
+      cursor: pointer;
+      &:hover .sidebar__menu-link {
+         transition: 0.2s ease;
+         color: $red-color;
+      }
+      &:before {
+         content: '';
+         position: absolute;
+         display: block;
+         width: 12px;
+         border-top-left-radius: 10px;
+         border-bottom-left-radius: 10px;
+         background-color: $red-color;
+         height: 100%;
+         left: 0;
+         top: 0;
+         transition: 0.2s ease;
+      }
+
+      &:hover::before {
+         width: 18px;
+         transition: 0.2s ease;
+      }
+
+      &:hover .sidebar__sub-menu {
+         display: block;
+      }
+   }
+
+   &__sub-menu {
+      padding: 10px 56px 36px 56px;
+      animation-name: fade;
+      animation-duration: 0.1s;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      display: none;
+      background: $bg-color;
+      border-right: 13px solid #FF1F1F;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+   }
+
+   &__genres {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 20px 70px;
+      grid-template-columns: repeat(auto, 1fr);
+      grid-template-rows: repeat(13, 1fr);
+   }
+
+   &__genre {
+      white-space: nowrap;
+      font-size: 24px;
+      color: $text-color;
+   }
+
+   &__menu-link {
+      position: relative;
+      transition: 0.2s ease;
+   }
+}
