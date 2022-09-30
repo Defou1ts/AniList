@@ -15,7 +15,16 @@
          font-size: 40px;
          & span:first-child {
             color: $red-color;
+            transition: 0.1s ease;
          }
+         & span:nth-child(2) {
+            color: $text-color;
+            transition: 0.1s ease;
+         }
+      }
+      & a:hover span{
+         transition: 0.1s ease;
+         color: $red-color;
       }
    }
 
