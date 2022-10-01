@@ -1,0 +1,81 @@
+@import '../../styles/variables.scss';
+
+.slider {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   position: relative;
+   &__container {
+      max-width: 1325px;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+   &__prev {
+      position: absolute;
+      left: 0;
+      top: 40%;
+      transform: translateY(-50%);
+   }
+
+   &__next {
+      right: 0;
+      top: 40%;
+      transform: translateY(-50%);
+      position: absolute;
+   }
+
+   &__wrapper {
+      display: flex;
+      position: relative;
+      max-width: 1205px;
+      width: 100%;
+      overflow: hidden;
+      min-height: 250px;
+   }
+
+   &__field {
+      position: absolute;
+      display: flex;
+      gap: 0px 45px;
+   }
+
+   &__slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px 0px;
+      & p {
+         font-size: 16px;
+         white-space: nowrap;
+      }
+   }
+
+   &__image {
+      max-width: 160px;
+      max-height: 220px;
+      width: 100%;
+      height: 100%;
+   }
+
+   &__dots {
+      margin: 15px 0px 0px 0px;
+      display: flex;
+      gap: 0px 14px;
+   }
+
+   &__dot {
+      width: 21px;
+      height: 21px;
+      background: #F4D0D0;
+      border-radius: 50%;
+      &.active {
+         background-color: $red-color;
+      }
+   }
+}
+

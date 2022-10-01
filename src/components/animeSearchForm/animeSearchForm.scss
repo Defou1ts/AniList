@@ -1,0 +1,94 @@
+@import '../../styles/variables.scss';
+
+.anime-search {
+   box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
+   border-radius: 10px;
+   &__header {
+      display: flex;
+      padding: 25px 32px;
+      gap: 0px 33px;
+      border-bottom: 2px solid $red-color;
+   }
+
+   &__icon {
+   }
+
+   &__title {
+      font-weight: 500;
+      font-size: 32px;
+   }
+
+   &__body {
+      display: flex;
+      flex-direction: column;
+      padding: 0px 32px;
+   }
+
+   &__genres {
+      margin: 26px 0px 0px 0px;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   &__toggle-wrapper {
+      display: flex;
+      gap: 0px 9px;
+   }
+
+   &__label:not(:first-child) {
+      margin: 26px 0px 0px 0px;
+   }
+
+   &__help-icon {
+   }
+
+   &__select {
+      margin: 12px 0px 0px 0px;
+   }
+
+   &__submit {
+      display: block;
+      font-size: 32px;
+      padding: 10px 78px;
+      background-color: #DEDEDE;
+      margin: 48px auto 33px auto;
+      max-width: 272px;
+   }
+}
+
+
+
+.anime-search {
+   &__toggle {
+      display: block;
+      background-color: #F4D0D0;
+      width: 53px;
+      height: 30px;
+      border-radius: 100px;
+      position: relative;
+   }
+
+   &__checkbox {
+      cursor: pointer;
+      position: absolute;
+      width: 53px;
+      height: 30px;
+      border-radius: 100px;
+      background-color: #FF1F1F;
+      z-index: 1;
+      opacity: 0;
+   }
+
+   &__toggle-circle {
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      background-color: #FF1F1F;
+      transition: 0.2s ease;
+   }
+}
+
+.anime-search__toggle input[type=checkbox]:checked+.anime-search__toggle-circle {
+   transform: translateX(22px);
+   transition: 0.2s ease;
+}

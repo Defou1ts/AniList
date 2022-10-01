@@ -58,6 +58,7 @@
       background: $bg-color;
       border-right: 13px solid #FF1F1F;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
+      z-index: 1;
    }
 
    &__genres {
@@ -76,6 +77,6 @@
 
    &__menu-link {
       position: relative;
-      transition: 0.2s ease;
+      transition: 0.1s ease;
    }
 }

@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.new-ep-today {
+   margin: 80px 0px 0px 0px;
+   &__title {
+      font-weight: 500;
+      font-size: 32px;
+      & span {
+         color: $red-color;
+      }
+   }
+
+   &__date {
+      margin: 20px 0px 35px 0px;
+      font-weight: 400;
+      font-size: 24px;
+   }
+
+   &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 27px 0px;
+   }
+}
