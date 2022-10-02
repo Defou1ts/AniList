@@ -1,12 +1,21 @@
 import './slider.scss';
 import leftArrow from '../../assets/arrleft.svg';
 import rightArrow from '../../assets/arrright.svg';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import SliderItem from '../sliderItem/SliderItem';
-
-
+import { fetchSliderItems } from './sliderSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import Spinner from '../spinner/Spinner';
 
 const Slider = () => {
+
+   const dispatch = useDispatch();
+   const sliderItemsLoadingStatus = useSelector(state => state.slider.sliderItemsLoadingStatus)
+   const sliderItems = useSelector(state => state.slider.sliderItems)
+
+   useEffect(() => {
+      dispatch(fetchSliderItems())
+   }, [])
 
    const [sliderPage, setSliderPage] = useState(1)
    const [sliderFieldWidth, setSliderFieldWidth] = useState(0)
@@ -17,7 +26,11 @@ const Slider = () => {
       }
    }, [])
 
-   const position = (sliderPage - 1) * (sliderFieldWidth / 2);
+   if (sliderItemsLoadingStatus === "loading") {
+      return <Spinner />;
+   } else if (sliderItemsLoadingStatus === "error") {
+      return <h5 className="text-center mt-5">Ошибка загрузки</h5>
+   }
 
    const nextSlide = () => {
       if ((sliderPage) * (sliderFieldWidth / 2) >= sliderFieldWidth) {
@@ -35,6 +48,16 @@ const Slider = () => {
       }
    }
 
+   const renderSliderItems = (arr) => {
+      return arr.map(({ id, ...props }) => {
+         return <SliderItem key={id} {...props} />
+      })
+   }
+
+   const renderedSliderItems = renderSliderItems(sliderItems)
+
+   console.log(renderSliderItems)
+
    return (
       <div className="slider">
          <div className="slider__container">
@@ -42,18 +65,7 @@ const Slider = () => {
             <button onClick={nextSlide} className="slider__next"><img src={rightArrow} alt="Next Slide" /></button>
             <div className="slider__wrapper">
                <div ref={sliderFieldRef} style={{ left: `-${(sliderPage - 1) * (sliderFieldWidth / 2)}px` }} className="slider__field">
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
-                  <SliderItem />
+                  {renderedSliderItems}
                </div>
             </div>
             <div className="slider__dots">

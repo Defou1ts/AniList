@@ -51,6 +51,10 @@
    }
 
    &__slide {
+      max-width: 160px;
+      max-width: 220px;
+      width: 160px;
+      height: 220px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -62,6 +66,8 @@
    }
 
    &__image {
+      border-radius: 10px;
+      object-fit: cover;
       max-width: 160px;
       max-height: 220px;
       width: 100%;
