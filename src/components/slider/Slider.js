@@ -1,78 +1,68 @@
 import './slider.scss';
 import leftArrow from '../../assets/arrleft.svg';
 import rightArrow from '../../assets/arrright.svg';
-import slide1 from '../../assets/slide1.svg';
-import slide2 from '../../assets/slide2.svg';
-import slide3 from '../../assets/slide3.svg';
-import slide4 from '../../assets/slide4.svg';
-import slide5 from '../../assets/slide5.svg';
-import slide6 from '../../assets/slide6.svg';
+import { useCallback, useState } from 'react';
+import SliderItem from '../sliderItem/SliderItem';
+
+
 
 const Slider = () => {
+
+   const [sliderPage, setSliderPage] = useState(1)
+   const [sliderFieldWidth, setSliderFieldWidth] = useState(0)
+
+   const sliderFieldRef = useCallback(node => {
+      if (node !== null) {
+         setSliderFieldWidth(node.offsetWidth + 30)
+      }
+   }, [])
+
+   const position = (sliderPage - 1) * (sliderFieldWidth / 2);
+
+   const nextSlide = () => {
+      if ((sliderPage) * (sliderFieldWidth / 2) >= sliderFieldWidth) {
+         setSliderPage(1)
+      } else {
+         setSliderPage(sliderPage + 1)
+      }
+   }
+
+   const prevSlide = () => {
+      if ((sliderPage - 1) * (sliderFieldWidth / 2) > 0) {
+         setSliderPage(sliderPage - 1)
+      } else {
+         setSliderPage(2)
+      }
+   }
+
    return (
       <div className="slider">
          <div className="slider__container">
-            <button className="slider__prev"><img src={leftArrow} alt="Prev Slide" /></button>
-            <button className="slider__next"><img src={rightArrow} alt="Next Slide" /></button>
+            <button onClick={prevSlide} className="slider__prev"><img src={leftArrow} alt="Prev Slide" /></button>
+            <button onClick={nextSlide} className="slider__next"><img src={rightArrow} alt="Next Slide" /></button>
             <div className="slider__wrapper">
-               <div className="slider__field">
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
-                  <div className="slider__slide">
-                     <img src={slide1} alt="slider image" className="slider__image" />
-                     <p>Я стала злодейкой..</p>
-                  </div>
+               <div ref={sliderFieldRef} style={{ left: `-${(sliderPage - 1) * (sliderFieldWidth / 2)}px` }} className="slider__field">
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
+                  <SliderItem />
                </div>
             </div>
             <div className="slider__dots">
-               <button className="slider__dot active"></button>
-               <button className="slider__dot"></button>
+               <button onClick={() => setSliderPage(1)} className={`slider__dot ${sliderPage === 1 ? 'active' : ''}`}></button>
+               <button onClick={() => setSliderPage(2)} className={`slider__dot ${sliderPage === 2 ? 'active' : ''}`}></button>
             </div>
          </div>
 
-      </div>
+      </div >
    )
 }
 

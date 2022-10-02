@@ -27,6 +27,10 @@
       top: 40%;
       transform: translateY(-50%);
       position: absolute;
+      &:hover {
+         transition: 0.1s;
+         filter: $grey-color;
+      }
    }
 
    &__wrapper {
@@ -39,6 +43,8 @@
    }
 
    &__field {
+      left: 0;
+      transition: 0.5s ease;
       position: absolute;
       display: flex;
       gap: 0px 45px;
