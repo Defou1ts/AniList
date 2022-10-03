@@ -1,6 +1,6 @@
 # AniList
 
-This project was created by one junior Frontend Developer
+This project was created by 2 students, that learn frontend and UI&UX
 
 ## Description
 
