@@ -2,16 +2,16 @@ import './newAnimeItem.scss';
 import newAnime from '../../assets/newanime.svg';
 import { Link } from 'react-router-dom';
 
-const NewAnimeItem = () => {
+const NewAnimeItem = ({ title, titleEn, poster, id, kind, year, genres }) => {
    return (
-      <Link className="new-anime__list-item" tp='/'>
+      <Link to={`/anime/${id}`} className="new-anime__list-item" tp='/'>
          <div className="new-anime__list-item-image">
-            <img src={newAnime} alt="Title anime picture" />
+            <img src={poster} alt="Title anime picture" />
          </div>
          <div className="new-anime__list-item-info">
-            <p className="new-anime__list-item-title">Арифурэта: Сильнейший ремесленник в мире 2 OVA</p>
-            <p className="new-anime__list-item-sub-title">Arifureta: Phantom Adventure and Miraculous Encounter</p>
-            <p className="new-anime__list-item-types">OVA / 2022 / Гарем, Приключение, Фэнтези, Экшен</p>
+            <p className="new-anime__list-item-title">{title}</p>
+            <p className="new-anime__list-item-sub-title">{titleEn}</p>
+            <p className="new-anime__list-item-types">{kind.toUpperCase()} / {year} / {genres.join(', ')}</p>
          </div>
       </Link>
    )

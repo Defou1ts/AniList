@@ -1,12 +1,30 @@
 @import '../../styles/variables.scss';
 
+
 .anime-search {
    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
    border-radius: 10px;
    select {
-      background-color: red;
-      option {
-         background-color: #fff;
+      background-color: #D9D9D9;
+      padding: 12px 15px;
+      font-weight: 400;
+      font-size: 16px;
+      color: #616060;
+      appearance: none;
+      position: relative;
+   }
+   &__select-wrapper {
+      margin: 12px 0px 0px 0px;
+      display: flex;
+      position: relative;
+      &:before {
+         content: url('../../assets/selectarrow.svg');
+         position: absolute;
+         width: 12px;
+         height: 7px;
+         z-index: 1;
+         right: 21px;
+         top: 5px;
       }
    }
    &__header {
@@ -49,7 +67,8 @@
    }
 
    &__select {
-      margin: 12px 0px 0px 0px;
+
+      flex: 1 1 auto;
    }
 
    &__submit {

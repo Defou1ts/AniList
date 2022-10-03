@@ -20,30 +20,40 @@ const AnimeSearchForm = () => {
                   <img className='anime-search__help-icon' src={helpIcon} alt="help icon" />
                </div>
             </div>
-            <select className='anime-search__select' name="genres" id="genres">
-               <option value="">Выберите жанр</option>
-               <option value="action">Экшн</option>
-            </select>
+            <div className="anime-search__select-wrapper">
+               <select className='anime-search__select' name="genres" id="genres">
+                  <option value="">Выберите жанр</option>
+                  <option value="action">Экшн</option>
+               </select>
+            </div>
             <label htmlFor="type" className="anime-search__label">Тип</label>
-            <select className='anime-search__select' name="type" id="type">
-               <option value="">Выберите тип</option>
-               <option value="action">Онгоинг</option>
-            </select>
+            <div className="anime-search__select-wrapper">
+               <select className='anime-search__select' name="type" id="type">
+                  <option value="">Выберите тип</option>
+                  <option value="action">Онгоинг</option>
+               </select>
+            </div>
             <label htmlFor="voice" className="anime-search__label">Тип озвучки</label>
-            <select className='anime-search__select' name="voice" id="voice">
-               <option value="">Выберите озвучку</option>
-               <option value="action">AniDub</option>
-            </select>
+            <div className="anime-search__select-wrapper">
+               <select className='anime-search__select' name="voice" id="voice">
+                  <option value="">Выберите озвучку</option>
+                  <option value="action">AniDub</option>
+               </select>
+            </div>
             <label htmlFor="status" className="anime-search__label">Статус</label>
-            <select className='anime-search__select' name="status" id="status">
-               <option value="">Выберите статус</option>
-               <option value="action">Онгоинг</option>
-            </select>
+            <div className="anime-search__select-wrapper">
+               <select className='anime-search__select' name="status" id="status">
+                  <option value="">Выберите статус</option>
+                  <option value="action">Онгоинг</option>
+               </select>
+            </div>
             <label htmlFor="age" className="anime-search__label">Возрастное ограничение</label>
-            <select className='anime-search__select' name="age" id="age">
-               <option value="">Возрастное ограничение</option>
-               <option value="action">18+</option>
-            </select>
+            <div className="anime-search__select-wrapper">
+               <select className='anime-search__select' name="age" id="age">
+                  <option value="">Возрастное ограничение</option>
+                  <option value="action">18+</option>
+               </select>
+            </div>
             <button type='submit' className="anime-search__submit">
                Искать
             </button>

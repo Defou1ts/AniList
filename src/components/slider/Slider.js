@@ -4,6 +4,7 @@ import rightArrow from '../../assets/arrright.svg';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchSliderItems } from './sliderSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 import SliderItem from '../sliderItem/SliderItem';
 import Spinner from '../spinner/Spinner';
@@ -52,7 +53,7 @@ const Slider = () => {
 
    const renderSliderItems = (arr) => {
       return arr.map(({ id, ...props }) => {
-         return <SliderItem key={id} id={id} {...props} />
+         return <SliderItem key={uuidv4()} id={id} {...props} />
       })
    }
 

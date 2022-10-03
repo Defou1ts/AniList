@@ -2,6 +2,7 @@ import './newEpisodesList.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchNewEpisodes } from './newEpisodesSlice';
+import { v4 as uuidv4 } from 'uuid';
 
 import NewEpisodeItem from '../newEpisodeItem/NewEpisodeItem';
 import Spinner from '../spinner/Spinner';
@@ -26,7 +27,7 @@ const NewEpisodesList = () => {
 
    const renderEpisodes = (arr) => {
       return arr.map(({ id, ...props }) => {
-         return <NewEpisodeItem key={id} id={id} {...props} />
+         return <NewEpisodeItem key={uuidv4()} id={id} {...props} />
       })
    }
 
