@@ -2,10 +2,12 @@ import './slider.scss';
 import leftArrow from '../../assets/arrleft.svg';
 import rightArrow from '../../assets/arrright.svg';
 import { useCallback, useEffect, useState } from 'react';
-import SliderItem from '../sliderItem/SliderItem';
-import { fetchSliderItems } from './sliderSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import { fetchSliderItems } from './sliderSlice';
+
+import SliderItem from '../sliderItem/SliderItem';
 import Spinner from '../spinner/Spinner';
+import ErrorMessage from '../errorMessage/ErrorMessage';
 
 const Slider = () => {
 
@@ -29,7 +31,7 @@ const Slider = () => {
    if (sliderItemsLoadingStatus === "loading") {
       return <Spinner />;
    } else if (sliderItemsLoadingStatus === "error") {
-      return <h5 className="text-center mt-5">Ошибка загрузки</h5>
+      return <ErrorMessage />
    }
 
    const nextSlide = () => {
@@ -50,13 +52,11 @@ const Slider = () => {
 
    const renderSliderItems = (arr) => {
       return arr.map(({ id, ...props }) => {
-         return <SliderItem key={id} {...props} />
+         return <SliderItem key={id} id={id} {...props} />
       })
    }
 
    const renderedSliderItems = renderSliderItems(sliderItems)
-
-   console.log(renderSliderItems)
 
    return (
       <div className="slider">

@@ -142,9 +142,25 @@ const AnimeSidebar = () => {
             </div>
             <div className="sidebar__menu-item">
                <span className="sidebar__menu-link">Статус</span>
+               <div className="sidebar__sub-menu">
+                  <div className="sidebar__statuses">
+                     <Link className='sidebar__status'>Онгоинги</Link>
+                     <Link className='sidebar__status'>Завершенные</Link>
+                     <Link className='sidebar__status'>Анонс</Link>
+                  </div>
+               </div>
             </div>
             <div className="sidebar__menu-item">
                <span className="sidebar__menu-link">Тип</span>
+               <div className="sidebar__sub-menu">
+                  <div className="sidebar__types">
+                     <Link className='sidebar__type'>ТВ-сериал</Link>
+                     <Link className='sidebar__type'>OVA</Link>
+                     <Link className='sidebar__type'>ONA</Link>
+                     <Link className='sidebar__type'>Фильм</Link>
+                     <Link className='sidebar__type'>Спешл</Link>
+                  </div>
+               </div>
             </div>
          </div>
          <AnimeSearchInput />

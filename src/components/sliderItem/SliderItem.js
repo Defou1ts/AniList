@@ -1,11 +1,11 @@
+import { Link } from "react-router-dom"
 
-
-const SliderItem = ({ title, poster }) => {
+const SliderItem = ({ title, poster, id }) => {
    return (
-      <div className="slider__slide">
+      <Link to={`/anime/${id}`} className="slider__slide">
          <img src={poster} alt="slider image" className="slider__image" />
          <p>{title}</p>
-      </div>
+      </Link>
    )
 }
 

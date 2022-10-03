@@ -48,7 +48,7 @@
    }
 
    &__sub-menu {
-      padding: 10px 56px 36px 56px;
+      padding: 36px 56px 36px 56px;
       animation-name: fade;
       animation-duration: 0.1s;
       position: absolute;
@@ -67,6 +67,25 @@
       gap: 20px 70px;
       grid-template-columns: repeat(auto, 1fr);
       grid-template-rows: repeat(13, 1fr);
+   }
+
+   &__statuses {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 0px 200px;
+      padding: 38px 0px;
+   }
+
+   &__types {
+      display: grid;
+      grid-auto-flow: column;
+      gap: 40px 250px;
+      grid-template-columns: repeat(auto, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+   }
+
+   &__type {
+      white-space: nowrap;
    }
 
    &__genre {

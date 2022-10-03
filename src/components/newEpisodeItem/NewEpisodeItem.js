@@ -1,18 +1,18 @@
 import './newEpisodeItem.scss';
-import itemImage from '../../assets/newep1.svg';
 import { Link } from 'react-router-dom';
 
-const NewEpisodeItem = () => {
+const NewEpisodeItem = ({ title, poster, id, lastEpisode }) => {
+   console.log(poster)
    return (
-      <Link className="new-ep-today__item" to='/'>
+      <Link className="new-ep-today__item" to={`/anime/${id}`}>
          <div className="new-ep-today__item-main">
-            <img className='new-ep-today__item-image' src={itemImage} alt="New episode today!" />
+            <img className='new-ep-today__item-image' src={poster} alt={title} />
             <div className="new-ep-today__item-titles">
-               <p className="new-ep-today__item-title">Новый Принц Тенниса: Чемпионат мира U-17</p>
+               <p className="new-ep-today__item-title">{title}</p>
                <p className="new-ep-today__item-sub-title">The Prince of Tennis II: U-17 World Cup</p>
             </div>
          </div>
-         <p className="new-ep-today__episode">13 серия</p>
+         <p className="new-ep-today__episode">{lastEpisode} серия</p>
       </Link>
    )
 }
