@@ -1,8 +1,63 @@
 import './animeSearchForm.scss';
 import filterIcon from '../../assets/filtericon.svg';
 import helpIcon from '../../assets/help.svg'
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
+import { fetchVoiceTranslations } from '../../slices/voiceTranslationsSlice';
 
 const AnimeSearchForm = () => {
+
+   const dispatch = useDispatch()
+
+   useEffect(() => {
+      dispatch(fetchVoiceTranslations())
+   }, [])
+
+   const genres = useSelector(state => state.genres.genres)
+   const voiceTranslations = useSelector(state => state.voiceTranslations.voiceTranslations)
+
+
+   const [manyGenres, setManyGenres] = useState(false)
+   const [selectedGenre, setSelectedGenre] = useState('')
+   const [selectedGenres, setSelectedGenres] = useState([])
+   const [selectedType, setSelectedType] = useState('')
+   const [selectedVoice, setSelectedVoice] = useState('')
+   const [selectedStatus, setSelectedStatus] = useState('')
+
+   const changeManyGenres = () => {
+      setManyGenres(!manyGenres)
+   }
+
+   useEffect(() => {
+      changeSelectedGenres()
+   }, [manyGenres])
+
+   const changeSelectedGenres = (genre) => {
+      if (manyGenres) {
+         setSelectedGenre('')
+         if (genre) {
+            setSelectedGenres(selectedGenres => [...selectedGenres, genre])
+         }
+      } else {
+         setSelectedGenres([])
+         if (genre) {
+            setSelectedGenre(genre)
+         }
+      }
+   }
+
+   const renderedSelectedGenres = selectedGenres.length > 0 ? selectedGenres
+      .map(genre => <div key={uuidv4()} className='anime-search__selected-genre'>{genre.charAt(0).toUpperCase() + genre.slice(1)}</div>) : null
+
+   const renderedVoiceTranslations = voiceTranslations.map(({ title, id }) => {
+      return <option key={uuidv4()} value={id}>{title.charAt(0).toUpperCase() + title.slice(1)}</option >
+   }).slice(0, 10)
+
+   const renderedGenres = genres.map(({ title }) => {
+      return <option key={uuidv4()} value={title}>{title.charAt(0).toUpperCase() + title.slice(1)}</option >
+   })
+
    return (
       <form className='anime-search'>
          <div className="anime-search__header">
@@ -14,37 +69,70 @@ const AnimeSearchForm = () => {
                <label className='anime-search__label' htmlFor="genres">Жанры</label>
                <div className='anime-search__toggle-wrapper'>
                   <label className="anime-search__toggle" htmlFor='toggle'>
-                     <input className="anime-search__checkbox" type="checkbox" name="toggle" id="toggle" />
+                     <input
+                        className="anime-search__checkbox"
+                        checked={manyGenres}
+                        onChange={changeManyGenres}
+                        type="checkbox"
+                        name="toggle"
+                        id="toggle" />
                      <div className="anime-search__toggle-circle"></div>
                   </label>
-                  <img className='anime-search__help-icon' src={helpIcon} alt="help icon" />
+                  <div className="anime-search__help-icon-wrapper">
+                     <img className='anime-search__help-icon' src={helpIcon} alt="help icon" />
+                  </div>
+
                </div>
             </div>
+            {renderedSelectedGenres}
             <div className="anime-search__select-wrapper">
-               <select className='anime-search__select' name="genres" id="genres">
+               <select
+                  value={selectedGenre}
+                  onChange={(e) => changeSelectedGenres(e.target.value)}
+                  className='anime-search__select'
+                  name="genres"
+                  id="genres">
                   <option value="">Выберите жанр</option>
-                  <option value="action">Экшн</option>
+                  {renderedGenres}
                </select>
             </div>
             <label htmlFor="type" className="anime-search__label">Тип</label>
             <div className="anime-search__select-wrapper">
-               <select className='anime-search__select' name="type" id="type">
+               <select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                  className='anime-search__select'
+                  name="type"
+                  id="type">
                   <option value="">Выберите тип</option>
-                  <option value="action">Онгоинг</option>
+                  <option value="ongoing">Онгоинг</option>
+                  <option value="released">Завершённые</option>
                </select>
             </div>
             <label htmlFor="voice" className="anime-search__label">Тип озвучки</label>
             <div className="anime-search__select-wrapper">
-               <select className='anime-search__select' name="voice" id="voice">
+               <select
+                  value={selectedVoice}
+                  onChange={(e) => setSelectedVoice(e.target.value)}
+                  className='anime-search__select'
+                  name="voice"
+                  id="voice">
                   <option value="">Выберите озвучку</option>
-                  <option value="action">AniDub</option>
+                  {renderedVoiceTranslations}
                </select>
             </div>
             <label htmlFor="status" className="anime-search__label">Статус</label>
             <div className="anime-search__select-wrapper">
-               <select className='anime-search__select' name="status" id="status">
+               <select
+                  value={selectedStatus}
+                  onChange={(e) => setSelectedStatus(e.target.value)}
+                  className='anime-search__select'
+                  name="status"
+                  id="status">
                   <option value="">Выберите статус</option>
-                  <option value="action">Онгоинг</option>
+                  <option value="ongoing">Онгоинг</option>
+                  <option value="released">Завершённые</option>
+                  <option value="anons">Анонс</option>
                </select>
             </div>
             <label htmlFor="age" className="anime-search__label">Возрастное ограничение</label>

@@ -8,7 +8,7 @@ const useKodikService = () => {
    const _apiToken = '2d343183c2f3cfb3c557e409460875e2';
    const sliderItemsLimit = 12;
    const newEpisodesLimit = 4;
-   const newAnimesLimit = 3;
+   const newAnimesLimit = 5;
 
    const getSliderItems = async () => {
       const res = await request(`${_apiBase}list?token=${_apiToken}&limit=${sliderItemsLimit}&sort=shikimori_rating&year=2022&translation_id=610&types=anime-serial`)
@@ -23,6 +23,16 @@ const useKodikService = () => {
    const getNewAnimes = async () => {
       const res = await request(`${_apiBase}list?token=${_apiToken}&limit=${newAnimesLimit}&sort=created_at&translation_id=610&translation_type=voice&types=anime-serial&with_material_data=true&anime_kind=tv,movie,ova,ona,special,tv_13,tv_24,tv_48`)
       return await res.results.map(_transformNewAnimes)
+   }
+
+   const getGenres = async () => {
+      const res = await request(`${_apiBase}genres?token=${_apiToken}&types=anime-serial`)
+      return await res.results;
+   }
+
+   const getVoiceTranslations = async () => {
+      const res = await request(`${_apiBase}translations/v2?token=${_apiToken}&types=anime-serial&translation_type=voice&sort=count`)
+      return res.results;
    }
 
    const _transformSliderItems = (item) => {
@@ -58,7 +68,9 @@ const useKodikService = () => {
    return {
       getSliderItems,
       getNewEpisodes,
-      getNewAnimes
+      getNewAnimes,
+      getGenres,
+      getVoiceTranslations
    }
 }
 

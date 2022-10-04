@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import useKodikService from "../../services/KodikService/KodikService";
+import useKodikService from "../services/KodikService/KodikService";
 
 const initialState = {
    newAnime: [],

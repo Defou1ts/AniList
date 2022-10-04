@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import useKodikService from "../../services/KodikService/KodikService";
+import useKodikService from "../services/KodikService/KodikService";
 
 const initialState = {
    sliderItems: [],

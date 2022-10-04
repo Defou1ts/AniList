@@ -1,7 +1,7 @@
 import './newAnimeList.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { fetchNewAnime } from './newAnimeSlice';
+import { fetchNewAnime } from '../../slices/newAnimeSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import NewAnimeItem from '../newAnimeItem/NewAnimeItem';

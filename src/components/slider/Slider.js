@@ -3,7 +3,7 @@ import leftArrow from '../../assets/arrleft.svg';
 import rightArrow from '../../assets/arrright.svg';
 import { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchSliderItems } from './sliderSlice';
+import { fetchSliderItems } from '../../slices/sliderSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import SliderItem from '../sliderItem/SliderItem';

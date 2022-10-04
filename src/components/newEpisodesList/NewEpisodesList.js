@@ -1,7 +1,7 @@
 import './newEpisodesList.scss';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchNewEpisodes } from './newEpisodesSlice';
+import { fetchNewEpisodes } from '../../slices/newEpisodesSlice';
 import { v4 as uuidv4 } from 'uuid';
 
 import NewEpisodeItem from '../newEpisodeItem/NewEpisodeItem';

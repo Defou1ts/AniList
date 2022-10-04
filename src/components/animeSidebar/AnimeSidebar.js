@@ -1,8 +1,41 @@
 import './animeSidebar.scss';
-import AnimeSearchInput from '../animeSearchInput/AnimeSearchInput';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchGenres } from '../../slices/genresSlice';
+import { v4 as uuidv4 } from 'uuid';
+
+import Spinner from '../spinner/Spinner';
+import ErrorMessage from '../errorMessage/ErrorMessage';
+
+import AnimeSearchInput from '../animeSearchInput/AnimeSearchInput';
+import SidebarGenreItem from '../sidebarGenreItem/SidebarGenreItem';
 
 const AnimeSidebar = () => {
+
+   const dispatch = useDispatch()
+
+   const genres = useSelector(state => state.genres.genres)
+   const genresLoadingStatus = useSelector(state => state.genres.genresLoadingStatus)
+
+   useEffect(() => {
+      dispatch(fetchGenres())
+   }, [])
+
+   if (genresLoadingStatus === "loading") {
+      return <Spinner />;
+   } else if (genresLoadingStatus === "error") {
+      return <ErrorMessage />
+   }
+
+   const renderGenres = (arr) => {
+      return arr.map(({ title }) => {
+         return <SidebarGenreItem key={uuidv4()} title={title} />
+      })
+   }
+
+   const renderedGenres = renderGenres(genres)
+
    return (
       <div className="sidebar">
          <div className="sidebar__menu">
@@ -10,133 +43,7 @@ const AnimeSidebar = () => {
                <span className="sidebar__menu-link">Жанры</span>
                <div className="sidebar__sub-menu">
                   <div className="sidebar__genres">
-                     <Link className='sidebar__genre' to="/">
-                        Апокалиптика
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Боевик
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Боевые искусства
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Детектив
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Драма
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Демоны
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Игры
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Исторический
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Магия
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Китайские
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        3D
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Cёнен
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Cёнен-ай
-                     </Link>
-
-                     <Link className='sidebar__genre' to="/">
-                        Cейнен
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Cёдзё
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Cёдзё-ай
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Комедия
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Романтика
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Школа
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Безумие
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Вампиры
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Военное
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Гарем
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Детское
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Машины
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Меха
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Музыка
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Пародия
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Повседневность
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Полиция
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Приключение
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Психологическое
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Самураи
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Сверхъестественное
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Спорт
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Супер сила
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Ужасы
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Фантастика
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Фэнтези
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Экшен
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Этти
-                     </Link>
-                     <Link className='sidebar__genre' to="/">
-                        Триллер
-                     </Link>
+                     {renderedGenres}
                   </div>
                </div>
             </div>

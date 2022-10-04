@@ -13,6 +13,10 @@
       appearance: none;
       position: relative;
    }
+   &__selected-genre {
+      font-size: 16px;
+      margin: 10px 0px 10px 10px;
+   }
    &__select-wrapper {
       margin: 12px 0px 0px 0px;
       display: flex;
@@ -34,7 +38,35 @@
       border-bottom: 2px solid $red-color;
    }
 
-   &__icon {
+   &__help-icon {
+      cursor: pointer;
+   }
+
+   &__help-icon-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      &:hover:before {
+         display: block;
+      }
+      &:before {
+         display: none;
+         animation-name: fade;
+         animation-duration: 0.3s;
+         border-radius: 6px;
+         text-align:center;
+         bottom: 100%;
+         position: absolute;
+         content: 'В правом положении индикатора вы можете составить свой список жанров. В левом положении вы можете выбрать один жанр.';
+         font-size: 0.7rem;
+         width: 190px;
+         height: 60px;
+         background-color:rgba(0, 0, 0, 0.5);
+         color: $bg-color;
+         padding: 5px;
+         line-height: 13px;
+      }
    }
 
    &__title {
