@@ -1,9 +1,31 @@
 @import '../../styles/variables.scss';
 
+.black-wrapper {
+   position: absolute;
+   left: 0;
+   top: 0;
+   min-width: 100%;
+   min-height: 100vh;
+   background-color: rgba(0, 0, 0, 0.4);
+   z-index: 4;
+
+}
+
 .header {
-   margin: 0px 0px 55px 0px;
+   max-width: 100%;
+   width: 100%;
+   margin: 0px 0px 30px 0px;
    border-bottom: 3px solid $red-color;
    padding: 30px 0px;
+   background-color: $bg-color;
+   @media(max-width:1024px) {
+      padding: 20px 0px;
+      margin: 0px 0px 0px 0px;
+      top: 0;
+      left: 0;
+      position: fixed;
+      z-index: 4;
+   }
    &__body {
       display: flex;
       justify-content: space-between;
@@ -26,13 +48,22 @@
          transition: 0.1s ease;
          color: $red-color;
       }
+      @media(max-width:1024px) {
+         & a {
+            font-size: 32px;
+         }
+      }
    }
 
    &__menu {
+      overflow-y: scroll;
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 50px;
+      @media(max-width:1024px) {
+         gap: 0px 20px;
+      }
    }
 
    &__menu-list {
@@ -40,6 +71,36 @@
       gap: 50px;
       justify-content: space-between;
       align-items: center;
+      transition: 0.2s ease;
+      @media(max-width:1024px) {
+         overflow-x: hidden;
+         overflow-y: scroll;
+         padding: 20px 0px;
+         align-items: flex-start;
+         justify-content: flex-start;
+         flex-direction: column;
+         left: -110%;
+         top: -30px !important   ;
+         max-width: 55%;
+         width: 100%;
+         z-index: 10;
+         background-color: $bg-color;
+         max-height: 108vh;
+         gap: 0px 0px;
+         position: absolute;
+         transition: 0.2s ease;
+         & >a {
+            padding: 10px 0px 10px 10px;
+            display: block;
+            width: 100%;
+            border-bottom: 1px solid $red-color;
+         }
+
+         & >a:first-child {
+            border-top: 1px solid $red-color;
+            margin: 20px 0px 0px 0px;
+         }
+      }
    }
 
    &__menu-link {
@@ -48,11 +109,67 @@
          transition: 0.2s ease;
          color: $red-color;
       }
-   }
+      @media(max-width:1024px) {
 
+         font-size: 16px;
+         font-weight: 500;
+      }
+   }
+   &__menu-burger {
+      display: none;
+      background-color: $red-color;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      border-radius: 10px;
+      &.active {
+      }
+      &:before {
+         content: '';
+         position: absolute;
+         width: 28px;
+         height: 2px;
+         background-color: #F0F0F0;
+         left: 6px;
+         top: 11px;
+      }
+      &:after {
+         content: '';
+         position: absolute;
+         width: 28px;
+         height: 2px;
+         background-color: #F0F0F0;
+         left: 6px;
+         bottom: 11px;
+      }
+      & span {
+         display: block;
+         width: 28px;
+         height: 2px;
+         background-color: #F0F0F0;
+         position: absolute;
+         left: 6px;
+         top: 19px;
+      }
+      @media(max-width:1024px) {
+         display: block;
+      }
+   }
    &__menu-profile {
       cursor: pointer;
       width: 50px;
       height: 50px;
+      & img {
+         width: 50px;
+         height: 50px;
+      }
+      @media(max-width:1024px) {
+         width: 40px;
+         height: 40px;
+         & img {
+            width: 40px;
+            height: 40px;
+         }
+      }
    }
 }

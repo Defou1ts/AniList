@@ -3,11 +3,16 @@
 .sidebar {
    max-width: 220px;
    width: 100%;
+   @media(max-width:1024px) {
+      min-width: 100%;
+      margin: 30px 0px 0px 0px;
+   }
    &__menu {
       margin: 0px 0px 55px 0px;
       display: flex;
       flex-direction: column;
       row-gap: 30px;
+      
    }
 
    &__menu-item {
@@ -19,9 +24,17 @@
       border-radius: 10px;
       line-height: 29px;
       cursor: pointer;
+      @media(max-width:1024px) {
+         min-width: 100%;
+         background-color: $bg-color;
+         padding: 0px;
+      }
       &:hover .sidebar__menu-link {
          transition: 0.2s ease;
          color: $red-color;
+         @media(max-width:1024px) {
+            color: $text-color;
+         }
       }
       &:before {
          content: '';
@@ -35,6 +48,10 @@
          left: 0;
          top: 0;
          transition: 0.2s ease;
+         @media(max-width:1024px) {
+            display: none;
+            
+         }
       }
 
       &:hover::before {
@@ -70,6 +87,13 @@
       border-right: 13px solid #FF1F1F;
       box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.25);
       z-index: 1;
+      @media(max-width:1024px) {
+         display: block;
+         position: static;
+         border: none;
+         box-shadow: none;
+         padding: 0px;
+      }
 
    }
 
@@ -78,7 +102,12 @@
       grid-auto-flow: column;
       gap: 20px 70px;
       grid-template-columns: repeat(auto, 1fr);
-      grid-template-rows: repeat(7, 1fr);
+      grid-template-rows: repeat(13, 1fr);
+      @media(max-width:1024px) {
+         display: flex;
+         flex-direction: column;
+         gap: 10px 0px;
+      }
    }
 
    &__statuses {
@@ -86,6 +115,19 @@
       grid-auto-flow: column;
       gap: 0px 200px;
       padding: 38px 0px;
+      @media(max-width:1024px) {
+         display: flex;
+         flex-direction: column;
+         gap: 10px 0px;
+      }
+   }
+
+   &__status {
+      @media(max-width:1024px) {
+         font-weight: 400;
+         font-size: 12px;
+         margin: 0px 0px 0px 10px;
+      }
    }
 
    &__types {
@@ -94,20 +136,43 @@
       gap: 40px 250px;
       grid-template-columns: repeat(auto, 1fr);
       grid-template-rows: repeat(2, 1fr);
+      @media(max-width:1024px) {
+         display: flex;
+         flex-direction: column;
+         gap: 10px 0px;
+      }
    }
 
    &__type {
       white-space: nowrap;
+      @media(max-width:1024px) {
+         font-weight: 400;
+         font-size: 12px;
+         margin: 0px 0px 0px 10px;
+      }
    }
 
    &__genre {
       white-space: nowrap;
       font-size: 24px;
       color: $text-color;
+      @media(max-width:1024px) {
+         font-weight: 400;
+         font-size: 12px;
+         margin: 0px 0px 0px 10px;
+      }
    }
 
    &__menu-link {
       position: relative;
       transition: 0.1s ease;
+      @media(max-width:1024px) {
+         display: block;
+         width: 100%;
+         padding: 10px 0px 10px 10px;
+         border-bottom: 1px solid $red-color;
+         font-weight: 500;
+         font-size: 16px;
+      }
    }
 }

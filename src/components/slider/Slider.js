@@ -20,12 +20,19 @@ const Slider = () => {
       dispatch(fetchSliderItems())
    }, [])
 
-   const [sliderPage, setSliderPage] = useState(1)
    const [sliderFieldWidth, setSliderFieldWidth] = useState(0)
+   const [sliderWrapperWidth, setSliderWrapperWidth] = useState(0)
 
    const sliderFieldRef = useCallback(node => {
       if (node !== null) {
-         setSliderFieldWidth(node.offsetWidth + 30)
+         setSliderFieldWidth(node.offsetWidth)
+
+      }
+   }, [])
+
+   const sliderWrapperRef = useCallback(node => {
+      if (node !== null) {
+         setSliderWrapperWidth(node.offsetWidth)
       }
    }, [])
 
@@ -36,19 +43,11 @@ const Slider = () => {
    }
 
    const nextSlide = () => {
-      if ((sliderPage) * (sliderFieldWidth / 2) >= sliderFieldWidth) {
-         setSliderPage(1)
-      } else {
-         setSliderPage(sliderPage + 1)
-      }
+
    }
 
    const prevSlide = () => {
-      if ((sliderPage - 1) * (sliderFieldWidth / 2) > 0) {
-         setSliderPage(sliderPage - 1)
-      } else {
-         setSliderPage(2)
-      }
+
    }
 
    const renderSliderItems = (arr) => {
@@ -59,19 +58,20 @@ const Slider = () => {
 
    const renderedSliderItems = renderSliderItems(sliderItems)
 
+
    return (
       <div className="slider">
          <div className="slider__container">
             <button onClick={prevSlide} className="slider__prev"><img src={leftArrow} alt="Prev Slide" /></button>
             <button onClick={nextSlide} className="slider__next"><img src={rightArrow} alt="Next Slide" /></button>
-            <div className="slider__wrapper">
-               <div ref={sliderFieldRef} style={{ left: `-${(sliderPage - 1) * (sliderFieldWidth / 2)}px` }} className="slider__field">
+            <div ref={sliderWrapperRef} className="slider__wrapper">
+               <div ref={sliderFieldRef} className="slider__field">
                   {renderedSliderItems}
                </div>
             </div>
             <div className="slider__dots">
-               <button onClick={() => setSliderPage(1)} className={`slider__dot ${sliderPage === 1 ? 'active' : ''}`}></button>
-               <button onClick={() => setSliderPage(2)} className={`slider__dot ${sliderPage === 2 ? 'active' : ''}`}></button>
+               <button className='slider__dot active'></button>
+               <button className='slider__dot'></button>
             </div>
          </div>
 

@@ -6,11 +6,11 @@ const initialState = {
    newAnimeLoadingStatus: 'idle',
 }
 
-export const fetchNewAnime = createAsyncThunk(
-   'newAnime/fetchNewAnime',
-   () => {
-      const { getNewAnimes } = useKodikService()
-      return getNewAnimes()
+export const fetchNewAnimeByOptions = createAsyncThunk(
+   'newAnime/fetchNewAnimeByOptions',
+   (data) => {
+      const { getNewAnimeByOptions } = useKodikService()
+      return getNewAnimeByOptions(data)
    }
 )
 
@@ -20,12 +20,12 @@ const newAnimeSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: (builder) => {
-      builder.addCase(fetchNewAnime.pending, state => { state.newAnimeLoadingStatus = 'loading' })
-      builder.addCase(fetchNewAnime.fulfilled, (state, action) => {
+      builder.addCase(fetchNewAnimeByOptions.pending, state => { state.newAnimeLoadingStatus = 'loading' })
+      builder.addCase(fetchNewAnimeByOptions.fulfilled, (state, action) => {
          state.newAnime = action.payload;
          state.newAnimeLoadingStatus = 'idle';
       })
-      builder.addCase(fetchNewAnime.rejected, state => { state.newAnimeLoadingStatus = 'error' })
+      builder.addCase(fetchNewAnimeByOptions.rejected, (state) => { state.newAnimeLoadingStatus = 'error' })
       builder.addDefaultCase(() => { })
    }
 })

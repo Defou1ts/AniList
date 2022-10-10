@@ -25,7 +25,7 @@ const newEpisodesSlice = createSlice({
          state.newEpisodes = action.payload;
          state.newEpisodesLoadingStatus = 'idle';
       })
-      builder.addCase(fetchNewEpisodes.rejected, state => { state.newEpisodesLoadingStatus = 'error' })
+      builder.addCase(fetchNewEpisodes.rejected, (state) => { state.newEpisodesLoadingStatus = 'error' })
       builder.addDefaultCase(() => { })
    }
 })

@@ -8,6 +8,9 @@
    width: 100%;
    border: 1px solid #AFAFAF;
    border-radius: 10px;
+   @media(max-width:1024px) {
+      margin: 18px 0px 0px 0px;
+   }
    &__icon {
       cursor: pointer;
       margin: 12.5px;
@@ -16,6 +19,12 @@
       &:hover {
          filter: invert(27%) sepia(88%) saturate(6116%) hue-rotate(353deg) brightness(105%) contrast(100%);
          transition: 0.1s ease;
+      }
+      @media(max-width:1024px) {
+         & img {
+            width: 15px;
+            height: 15px;
+         }
       }
    }
    &__input {
@@ -26,6 +35,11 @@
       background: transparent;
       &::placeholder {
          color: #959595;
+      }
+      @media(max-width:1024px) {
+         width: 100%;
+         display: inline-block;
+         font-size: 14px;
       }
    }
 }

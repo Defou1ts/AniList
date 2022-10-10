@@ -3,11 +3,15 @@ import AnimeSidebar from "../components/animeSidebar/AnimeSidebar";
 import NewAnimeList from "../components/newAnimeList/NewAnimeList";
 import NewEpisodesList from "../components/newEpisodesList/NewEpisodesList";
 import Slider from "../components/slider/Slider";
+import { useMobile } from "../hooks/useMobile";
 
 const MainPage = () => {
+
+   const { isMobile } = useMobile()
+
    return (
       <div className="main">
-         <AnimeSidebar />
+         {isMobile ? null : <AnimeSidebar />}
          <div className="main__content">
             <Slider />
             <NewEpisodesList />

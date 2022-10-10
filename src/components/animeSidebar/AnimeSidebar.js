@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchGenres } from '../../slices/genresSlice';
 import { v4 as uuidv4 } from 'uuid';
+import { useMobile } from '../../hooks/useMobile';
 
 import Spinner from '../spinner/Spinner';
 import ErrorMessage from '../errorMessage/ErrorMessage';
@@ -12,6 +13,8 @@ import AnimeSearchInput from '../animeSearchInput/AnimeSearchInput';
 import SidebarGenreItem from '../sidebarGenreItem/SidebarGenreItem';
 
 const AnimeSidebar = () => {
+
+   const { isMobile } = useMobile()
 
    const dispatch = useDispatch()
 
@@ -70,7 +73,7 @@ const AnimeSidebar = () => {
                </div>
             </div>
          </div>
-         <AnimeSearchInput />
+         {isMobile ? null : <AnimeSearchInput />}
       </div>
 
    )

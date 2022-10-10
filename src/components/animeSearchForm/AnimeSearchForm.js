@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { fetchVoiceTranslations } from '../../slices/voiceTranslationsSlice';
+import { fetchNewAnimeByOptions } from '../../slices/newAnimeSlice';
 
 const AnimeSearchForm = () => {
 
@@ -24,6 +25,7 @@ const AnimeSearchForm = () => {
    const [selectedType, setSelectedType] = useState('')
    const [selectedVoice, setSelectedVoice] = useState('')
    const [selectedStatus, setSelectedStatus] = useState('')
+   const [ageRating, setAgeRating] = useState('')
 
    const changeManyGenres = () => {
       setManyGenres(!manyGenres)
@@ -31,6 +33,13 @@ const AnimeSearchForm = () => {
 
    useEffect(() => {
       changeSelectedGenres()
+      dispatch(fetchNewAnimeByOptions({
+         genres: manyGenres ? selectedGenres.join(',') : selectedGenre,
+         type: selectedType,
+         voice: selectedVoice,
+         status: selectedStatus,
+         ageRating: ageRating
+      }))
    }, [manyGenres])
 
    const changeSelectedGenres = (genre) => {
@@ -47,6 +56,17 @@ const AnimeSearchForm = () => {
       }
    }
 
+   const handleSubmit = (e) => {
+      e.preventDefault()
+      dispatch(fetchNewAnimeByOptions({
+         genres: manyGenres ? selectedGenres.join(',') : selectedGenre,
+         type: selectedType,
+         voice: selectedVoice,
+         status: selectedStatus,
+         ageRating: ageRating
+      }))
+   }
+
    const renderedSelectedGenres = selectedGenres.length > 0 ? selectedGenres
       .map(genre => <div key={uuidv4()} className='anime-search__selected-genre'>{genre.charAt(0).toUpperCase() + genre.slice(1)}</div>) : null
 
@@ -59,7 +79,7 @@ const AnimeSearchForm = () => {
    })
 
    return (
-      <form className='anime-search'>
+      <form onSubmit={(e) => handleSubmit(e)} className='anime-search'>
          <div className="anime-search__header">
             <img src={filterIcon} alt="Filter Icon" className="anime-search__icon" />
             <p className="anime-search__title">Фильтры</p>
@@ -105,8 +125,10 @@ const AnimeSearchForm = () => {
                   name="type"
                   id="type">
                   <option value="">Выберите тип</option>
-                  <option value="ongoing">Онгоинг</option>
-                  <option value="released">Завершённые</option>
+                  <option value="tv">ТВ сериал</option>
+                  <option value="movie">Фильм</option>
+                  <option value="ova">OVA</option>
+                  <option value="special">Спешл</option>
                </select>
             </div>
             <label htmlFor="voice" className="anime-search__label">Тип озвучки</label>
@@ -137,9 +159,19 @@ const AnimeSearchForm = () => {
             </div>
             <label htmlFor="age" className="anime-search__label">Возрастное ограничение</label>
             <div className="anime-search__select-wrapper">
-               <select className='anime-search__select' name="age" id="age">
+               <select
+                  value={ageRating}
+                  onChange={(e) => setAgeRating(e.target.value)}
+                  className='anime-search__select'
+                  name="age"
+                  id="age">
                   <option value="">Возрастное ограничение</option>
-                  <option value="action">18+</option>
+                  <option value="G">G</option>
+                  <option value="PG">PG</option>
+                  <option value="PG-13">PG-13</option>
+                  <option value="R">R</option>
+                  <option value="R+">R+</option>
+                  <option value="Rx">Rx</option>
                </select>
             </div>
             <button type='submit' className="anime-search__submit">
